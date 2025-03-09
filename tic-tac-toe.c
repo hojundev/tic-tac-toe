@@ -1,5 +1,4 @@
 // This program is a simple tic-tac-toe game that can be played by two players written in C.
-// COMMENT GOES HERE
 #include <stdio.h>
 
 void board(char table[], int dim) {
