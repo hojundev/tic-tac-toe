@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 void board(char table[], int dim) {
+    assert(dim <= 5);
     for (int i = 0; i < (2 * dim + 1); i++) {
         for (int j = 0; j < (2 * dim + 1); j++) {
             if (i % 2 == 0) {
