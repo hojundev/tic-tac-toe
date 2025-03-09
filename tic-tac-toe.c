@@ -2,6 +2,10 @@
 #include <stdio.h>
 #include <assert.h>
 
+// board(table, dim) creates a board of dimension dim x dim.
+// requires: dim <= 5
+//           table is a valid pointer
+// effects: produces output
 void board(char table[], int dim) {
     assert(dim <= 5);
     assert(table);
