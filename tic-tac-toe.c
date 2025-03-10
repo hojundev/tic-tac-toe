@@ -1,6 +1,7 @@
 // This program is a simple tic-tac-toe game that can be played by two players written in C.
 #include <stdio.h>
 #include <assert.h>
+#include "play_game.h"
 
 // board(table, dim) creates a board of dimension dim x dim.
 // requires: dim <= 5
@@ -12,16 +13,18 @@ void board(char table[], int dim) {
     for (int i = 0; i < (2 * dim + 1); i++) {
         for (int j = 0; j < (2 * dim + 1); j++) {
             if (i % 2 == 0) {
-                *(table + j) = '-';
+                printf("-");
             } else {
                 if (j % 2 == 0) {
-                    *(table + j) = '|';                
+                    printf("|");                
                 } else {
-                    *(table + j) = ' ';
+                    *(table) = ' ';
+                    printf("%c", *(table));
+                    ++table;
                 }
             }
         }
-        table += (2 * dim + 1);
+        printf("\n");
     }
 }
 
@@ -30,13 +33,6 @@ int main(void) {
     int dim = 0;
     printf("What is the dimension of the board? (max 5) ");
     scanf("%d", &dim);
-    char table[4 * dim * dim + 4 * dim + 1];
+    char table[dim * dim];
     board(table, dim);
-    for (int i = 0; i < (2 * dim + 1); i++) {
-        for (int j = 0; j < (2 * dim + 1); j++) {
-            printf("%c", table[i * (2 * dim + 1) + j]);
-        }
-        printf("\n");
-    }
-    return 0;
 }
