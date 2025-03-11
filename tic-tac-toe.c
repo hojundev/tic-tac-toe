@@ -7,7 +7,7 @@
 // requires: dim <= 5
 //           table is a valid pointer
 // effects: produces output
-void board(char table[], int dim) {
+void print_board(char table[], int dim) {
     assert(dim <= 5);
     assert(table);
     for (int i = 0; i < (2 * dim + 1); i++) {
@@ -18,7 +18,6 @@ void board(char table[], int dim) {
                 if (j % 2 == 0) {
                     printf("|");                
                 } else {
-                    *(table) = ' ';
                     printf("%c", *(table));
                     ++table;
                 }
@@ -34,5 +33,10 @@ int main(void) {
     printf("What is the dimension of the board? (max 5) ");
     scanf("%d", &dim);
     char table[dim * dim];
-    board(table, dim);
+    for (int i = 0; i < dim * dim; i++) {
+        table[i] = ' ';
+    }
+    print_board(table, dim);
+    game(table, 'O', 'X', dim * dim, dim);
+    print_board(table, dim);
 }
