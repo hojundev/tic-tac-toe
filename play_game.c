@@ -1,6 +1,10 @@
 #include "play_game.h"
 
+extern void print_board(char table[], int dim);
+
 bool bingo(char *board, int dim) {
+    assert(board);
+    assert(dim > 0);
     for (int i = 0; i < (dim - 1); i++) { // diagonal bingo
         if (*(board + (i * dim) + i) == *(board + ((i + 1) * dim) + (i + 1))) {
             if (*(board + (i * dim) + i) != ' ') {
@@ -51,6 +55,9 @@ void place_symbol(char *board, int row, int col, char sym, int dim) {
     assert(board);
     assert(row >= 0);
     assert(col >= 0);
+    assert(dim > 0);
+    assert(sym >= 0);
+    assert(sym <= 127);
     *(board + dim * (row - 1) + (col - 1)) = sym;
 }
 
@@ -104,14 +111,18 @@ void game(char *board,char player1, char player2, int plays, int dim) {
         if (bingo(board, dim)) {
             if (plays % 2 == 1) {
                 printf("Player 1 wins!\n");
+                print_board(board, dim);
             } else {
                 printf("Player 2 wins!\n");
+                print_board(board, dim);
             }
             break;
         } else if (plays == 1) {
             printf("It's a draw!\n");
+            print_board(board, dim);
             break;
         }
+        print_board(board, dim);
         plays--;
     }
 }

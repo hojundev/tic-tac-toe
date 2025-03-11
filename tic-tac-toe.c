@@ -38,5 +38,4 @@ int main(void) {
     }
     print_board(table, dim);
     game(table, 'O', 'X', dim * dim, dim);
-    print_board(table, dim);
 }
