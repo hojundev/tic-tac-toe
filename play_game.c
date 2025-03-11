@@ -1,5 +1,52 @@
 #include "play_game.h"
 
+bool bingo(char *board, int dim) {
+    for (int i = 0; i < (dim - 1); i++) { // diagonal bingo
+        if (*(board + (i * dim) + i) == *(board + ((i + 1) * dim) + (i + 1))) {
+            if (*(board + (i * dim) + i) != ' ') {
+                if (i == (dim - 2)) {
+                    return true;
+                }
+            } else {
+                break;
+            }
+        } else {
+            break;
+        }
+    }
+    for (int i = 0; i < dim; i++) { // row bingo
+        for (int j = 0; j < (dim - 1); j++) {
+            if (*(board + (i * dim) + j) == *(board + (i * dim) + (j + 1))) {
+                if (*(board + (i * dim) + j) != ' ') {
+                    if (j == (dim - 2)) {
+                        return true;
+                    }
+                } else {
+                    break;
+                }
+            } else {
+                break;
+            }
+        }
+    }
+    for (int i = 0; i < dim; i++) { // column bingo
+        for (int j = 0; j < (dim - 1); j++) {
+            if (*(board + (j * dim) + i) == *(board + ((j + 1) * dim) + i)) {
+                if (*(board + (j * dim) + i) != ' ') {
+                    if (j == (dim - 2)) {
+                        return true;
+                    }
+                } else {
+                    break;
+                }
+            } else {
+                break;
+            }
+        }
+    }
+    return false;
+}
+
 void place_symbol(char *board, int row, int col, char sym, int dim) {
     assert(board);
     assert(row >= 0);
@@ -44,7 +91,6 @@ void game(char *board,char player1, char player2, int plays, int dim) {
                 scanf("%d, %d", &row, &col);
             }
             place_symbol(board, row, col, player1, dim);
-            plays--;
         } else {
             printf("Player 2, please enter the row and column of your move (row, column): ");
             scanf("%d, %d", &row, &col);
@@ -54,7 +100,18 @@ void game(char *board,char player1, char player2, int plays, int dim) {
                 scanf("%d, %d", &row, &col);
             }
             place_symbol(board, row, col, player2, dim);
-            plays--;
         }
+        if (bingo(board, dim)) {
+            if (plays % 2 == 1) {
+                printf("Player 1 wins!\n");
+            } else {
+                printf("Player 2 wins!\n");
+            }
+            break;
+        } else if (plays == 1) {
+            printf("It's a draw!\n");
+            break;
+        }
+        plays--;
     }
 }

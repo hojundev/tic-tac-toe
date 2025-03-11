@@ -3,6 +3,8 @@
 #include <assert.h>
 #include <stdbool.h>
 
+bool bingo(char *board, int dim);
+
 void place_symbol(char *board, int row, int col, char sym, int dim);
 
 // valid_coord(board, row, col) checks if the coordinates row and col are valid.
