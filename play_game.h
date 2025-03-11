@@ -3,8 +3,17 @@
 #include <assert.h>
 #include <stdbool.h>
 
+// bingo(board, dim) checks if one of the players has won the game.
+// requires: board is a valid pointer
+//           dim must be positive
 bool bingo(char *board, int dim);
 
+// place_symbol(board, row, col, sym, dim) places the symbol sym at the coordinates.
+// requires: board is a valid pointer
+//           row and col must be positive
+//           sym must be an ASCII character
+//           dim must be positive
+// effects: may mutate the board
 void place_symbol(char *board, int row, int col, char sym, int dim);
 
 // valid_coord(board, row, col) checks if the coordinates row and col are valid.
