@@ -89,6 +89,11 @@ void game(char *board,char player1, char player2, int plays, int dim) {
     int row = 0;
     int col = 0;
     while(plays > 0) {
+        char quit_status = '\0';
+        if (1 == scanf("%c", &quit_status) && quit_status == 'q') {
+            printf("Game quit!\n");
+            break;
+        }
         if (plays % 2 == 1) {
             printf("Player 1, please enter the row and column of your move (row, column): ");
             scanf("%d, %d", &row, &col);
